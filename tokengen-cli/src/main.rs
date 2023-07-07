@@ -1,5 +1,12 @@
+use clap::Parser;
+
+#[derive(Parser)]
+struct TokenGen {
+    #[arg(long, short = 'l')]
+    length: Option<i32>
+}
+
 fn main() {
-    let gen = tokengen_core::generate(Some(888));
-    println!("{}", gen);
-    println!("length: {}", gen.len())
+    let cli = TokenGen::parse();
+    println!("token: {}", tokengen_core::generate(cli.length));
 }
